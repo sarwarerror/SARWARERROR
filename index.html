@@ -867,6 +867,8 @@
       if (window._bootRan) return;
       window._bootRan = true;
       const container = document.getElementById('bootSequence');
+      // Clear any previous content to avoid duplicates
+      container.innerHTML = '';
 
       // Show disk activity during boot
       showDiskActivity(800);
@@ -904,10 +906,10 @@
 
       const menu = document.createElement('div');
       menu.innerHTML = `
-        <div class="terminal-line menu-item" data-path="/about">10 "ABOUT.PRG" PRG</div>
-        <div class="terminal-line menu-item" data-path="/projects">20 "PROJECTS.PRG" PRG</div>
-        <div class="terminal-line menu-item" data-path="/writeups">30 "WRITEUPS.PRG" PRG</div>
-        <div class="terminal-line menu-item" data-path="/links">40 "LINKS.PRG" PRG</div>
+        <div class="terminal-line menu-item" data-path="#/about">10 "ABOUT.PRG" PRG</div>
+        <div class="terminal-line menu-item" data-path="#/projects">20 "PROJECTS.PRG" PRG</div>
+        <div class="terminal-line menu-item" data-path="#/writeups">30 "WRITEUPS.PRG" PRG</div>
+        <div class="terminal-line menu-item" data-path="#/links">40 "LINKS.PRG" PRG</div>
       `;
       container.appendChild(menu);
       // Attach programmatic click handlers (safer than inline onclick attributes)
@@ -1061,7 +1063,7 @@
         box.onclick = () => {
           const slug = writeup.slug || (writeup.url && writeup.url.split('/').pop());
           if (!slug) return;
-          navigateTo('/writeup/' + slug);
+          navigateTo('#/writeup/' + slug);
         };
 
         content.appendChild(box);
@@ -1124,14 +1126,16 @@
     }
 
     // Router: navigateTo, handleRoute, and loadWriteupContent
+    // Use hash-based routing for GitHub Pages compatibility
     function navigateTo(path, replace = false) {
-      try {
-        if (replace) history.replaceState({}, '', path);
-        else history.pushState({}, '', path);
-      } catch (e) {
-        // Ignore pushState errors on older browsers
+      // Ensure path starts with #
+      const hashPath = path.startsWith('#') ? path : '#' + path;
+      if (replace) {
+        location.replace(hashPath);
+      } else {
+        location.hash = hashPath.slice(1); // set hash without the leading #
       }
-      console.log('[router] navigateTo', path);
+      console.log('[router] navigateTo', hashPath);
       handleRoute();
     }
 
@@ -1183,9 +1187,11 @@
     }
 
     function handleRoute() {
-      const path = location.pathname.replace(/\/+$|^\/?/, '/').replace(/^\/?/, '/');
-      // Normalize
-      const p = location.pathname || '/';
+      // Use hash-based routing: read from location.hash
+      const hash = location.hash || '';
+      // Normalize: remove leading # and ensure starts with /
+      let p = hash.replace(/^#\/?/, '/').replace(/\/+$/, '') || '/';
+      console.log('[router] handleRoute, path:', p);
       if (p === '/' || p === '') return;
       if (p === '/links') {
         loadProgram('links');
@@ -1204,10 +1210,10 @@
       if (p === '/about' || p === '/projects') {
         loadProgram(p.slice(1));
       }
-
     }
 
-    window.addEventListener('popstate', handleRoute);
+    // Listen for hash changes (works with GitHub Pages)
+    window.addEventListener('hashchange', handleRoute);
 
     // Konami Code Easter Egg
     let konamiCode = [];
@@ -1352,19 +1358,19 @@
         return;
       }
 
-      // F1-F4 Quick Load (use router to keep URL in sync)
+      // F1-F4 Quick Load (use hash-based router to keep URL in sync)
       if (e.key === 'F1') {
         e.preventDefault();
-        navigateTo('/about');
+        navigateTo('#/about');
       } else if (e.key === 'F2') {
         e.preventDefault();
-        navigateTo('/projects');
+        navigateTo('#/projects');
       } else if (e.key === 'F3') {
         e.preventDefault();
-        navigateTo('/writeups');
+        navigateTo('#/writeups');
       } else if (e.key === 'F4') {
         e.preventDefault();
-        navigateTo('/links');
+        navigateTo('#/links');
       }
 
       // Handle typing
