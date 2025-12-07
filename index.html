@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SARWAR "BARTMOSS"</title>
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="ASSETS/favicon.jpeg">
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://totallynotabackdoor.site">
@@ -751,37 +754,42 @@
 
     const writeups = [
       {
-        title: '[01] ATM JACKPOTTING',
-        desc: 'SPITTING OUT BILLS - ATM JACKPOTTING SOUNDS LIKE SOMETHING OUT OF A MOVIE, BUT IT\'S A REAL ATTACK HAPPENING AROUND THE WORLD. SECRET CHEAT CODE FOR INFINITE MONEY MODE.',
-        url: 'https://github.com/sarwarerror/sarwarerror/wiki/ATM-Jackpotting-Spitting-Out-Bills'
+        title: "[01] ATM JACKPOTTING",
+        desc: "SPITTING OUT BILLS - ATM JACKPOTTING SOUNDS LIKE SOMETHING OUT OF A MOVIE, BUT IT'S A REAL ATTACK HAPPENING AROUND THE WORLD. SECRET CHEAT CODE FOR INFINITE MONEY MODE.",
+        slug: "ATM-Jackpotting-Spitting-Out-Bills",
+        url: "/writeup/ATM-Jackpotting-Spitting-Out-Bills"
       },
       {
-        title: '[02] MALWARE INTERNALS',
-        desc: 'BASICS OF MALWARE INTERNAL STRUCTURE - IMAGINE YOUR COMPUTER HOLDING YOUR FILES HOSTAGE, LOCKED AWAY BEHIND AN UNBREAKABLE DIGITAL VAULT WITH A MENACING NOTE DEMANDING PAYMENT.',
-        url: 'https://github.com/sarwarerror/sarwarerror/wiki/Basic\'s-of-Malware-Internal-Structure'
+        title: "[02] MALWARE INTERNALS",
+        desc: "BASICS OF MALWARE INTERNAL STRUCTURE - IMAGINE YOUR COMPUTER HOLDING YOUR FILES HOSTAGE, LOCKED AWAY BEHIND AN UNBREAKABLE DIGITAL VAULT WITH A MENACING NOTE DEMANDING PAYMENT.",
+        slug: "Basic's-of-Malware-Internal-Structure",
+        url: "/writeup/Basic's-of-Malware-Internal-Structure"
       },
       {
-        title: '[03] DISCORD C2 SERVER',
-        desc: 'C2 SERVERS ARE LIKE PUPPET MASTERS CONTROLLING ALL THE PUPPETS UNDER THEM. JUST AS A PUPPET MASTER PULLS THE STRINGS TO MAKE PUPPETS MOVE, A C2 SERVER SENDS INSTRUCTIONS.',
-        url: 'https://github.com/sarwarerror/sarwarerror/wiki/Discord-C2-Server-and-a-Rat'
+        title: "[03] DISCORD C2 SERVER",
+        desc: "C2 SERVERS ARE LIKE PUPPET MASTERS CONTROLLING ALL THE PUPPETS UNDER THEM. JUST AS A PUPPET MASTER PULLS THE STRINGS TO MAKE PUPPETS MOVE, A C2 SERVER SENDS INSTRUCTIONS.",
+        slug: "Discord-C2-Server-and-a-Rat",
+        url: "/writeup/Discord-C2-Server-and-a-Rat"
       },
       {
-        title: '[04] USERLAND ROOTKITS',
-        desc: 'THE GHOST IN THE MACHINE - YOUR COMPUTER SEEMS FINE BUT SOMETHING INVISIBLE IS HIDING DEEP INSIDE YOUR SYSTEM. WATCHING. WAITING. IT CAN SPY ON YOU, STEAL YOUR DATA.',
-        url: 'https://github.com/sarwarerror/sarwarerror/wiki/Userland-Rootkit\'s-and-the-Code-Behind-it'
+        title: "[04] USERLAND ROOTKITS",
+        desc: "THE GHOST IN THE MACHINE - YOUR COMPUTER SEEMS FINE BUT SOMETHING INVISIBLE IS HIDING DEEP INSIDE YOUR SYSTEM. WATCHING. WAITING. IT CAN SPY ON YOU, STEAL YOUR DATA.",
+        slug: "Userland-Rootkit's-and-the-Code-Behind-it",
+        url: "/writeup/Userland-Rootkit's-and-the-Code-Behind-it"
       },
       {
-        title: '[05] SUPPLY CHAIN ATTACK',
-        desc: 'THE POISON WELL - YOU ARE DESERTED IN THE VAST DUNE, THIRSTY AND SWEAT DRIPPING DOWN YOUR FOREHEAD. YOU SEE A WELL, A NORMAL WELL, AND EXCITEDLY START DRINKING FROM IT.',
-        url: 'https://github.com/sarwarerror/sarwarerror/wiki/The-Poision-Well,-Supply-Chain-Attack'
+        title: "[05] SUPPLY CHAIN ATTACK",
+        desc: "THE POISON WELL - YOU ARE DESERTED IN THE VAST DUNE, THIRSTY AND SWEAT DRIPPING DOWN YOUR FOREHEAD. YOU SEE A WELL, A NORMAL WELL, AND EXCITEDLY START DRINKING FROM IT.",
+        slug: "The-Poision-Well,-Supply-Chain-Attack",
+        url: "/writeup/The-Poision-Well,-Supply-Chain-Attack"
       }
     ];
 
     const links = [
-      { title: '> TWITTER/X', desc: '@SARWAROFFLINE', url: 'https://x.com/sarwaroffline' },
-      { title: '> GITHUB', desc: 'GITHUB.COM/sarwarerror', url: 'https://github.com/sarwarerror' },
-      { title: '> DISCORD', desc: 'DISCORD.GG/CTRLALTDELETE', url: 'https://discord.gg/aWeFF8cfAn' },
-      { title: '> WIKI', desc: 'TECHNICAL WRITEUPS & RESEARCH', url: 'https://github.com/sarwarerror/sarwarerror/wiki' }
+      { title: "> TWITTER/X", desc: "@SARWAROFFLINE", url: "https://x.com/sarwaroffline" },
+      { title: "> GITHUB", desc: "GITHUB.COM/sarwarerror", url: "https://github.com/sarwarerror" },
+      { title: "> DISCORD", desc: "DISCORD.GG/CTRLALTDELETE", url: "https://discord.gg/aWeFF8cfAn" },
+      { title: "> WIKI", desc: "TECHNICAL WRITEUPS & RESEARCH", url: "https://github.com/sarwarerror/SARWARERROR/wiki" }
     ];
 
     // Fetch GitHub wiki page list via r.jina.ai and parse links
@@ -792,29 +800,20 @@
         const res = await fetch(api);
         const text = await res.text();
 
-        // Parse markdown links: [Title](URL)
         const pages = [];
-        // Match [Title](.../wiki/Page-Name) but exclude anchors (#) and non-wiki links
-        const linkRegex = /\[([^\]]+)\]\((https:\/\/github\.com\/sarwarerror\/sarwarerror\/wiki\/[^)#\s]+)\)/gi;
-
+        const linkRegex = /\[([^\]]+)\]\((https:\/\/github\.com\/sarwarerror\/SARWARERROR\/wiki\/[^)#\s]+)\)/gi;
         let m;
         while ((m = linkRegex.exec(text)) !== null) {
           let title = m[1].trim();
           const url = m[2];
-
-          // Clean up title (remove "Loading " prefix if present from jina output)
           title = title.replace(/^Loading\s+/, '');
-
-          // Filter out "Home" and duplicates
           if (title !== 'Home' && !pages.some(p => p.url === url)) {
-            pages.push({ title, url });
+            const slug = url.split('/').pop();
+            pages.push({ title, url, slug });
           }
         }
 
-        // If no pages found, return null
         if (pages.length === 0) return null;
-
-        // Return pages as is (assuming wiki list is correct order)
         return pages;
       } catch (err) {
         console.warn('fetchWikiPages failed', err);
@@ -902,15 +901,17 @@
 
       const menu = document.createElement('div');
       menu.innerHTML = `
-        <div class="terminal-line menu-item" onclick="loadProgram('about')">10 "ABOUT.PRG" PRG</div>
-        <div class="terminal-line menu-item" onclick="loadProgram('projects')">20 "PROJECTS.PRG" PRG</div>
-        <div class="terminal-line menu-item" onclick="loadProgram('writeups')">30 "WRITEUPS.PRG" PRG</div>
-        <div class="terminal-line menu-item" onclick="loadProgram('links')">40 "LINKS.PRG" PRG</div>
+        <div class="terminal-line menu-item" data-path="/about">10 "ABOUT.PRG" PRG</div>
+        <div class="terminal-line menu-item" data-path="/projects">20 "PROJECTS.PRG" PRG</div>
+        <div class="terminal-line menu-item" data-path="/writeups">30 "WRITEUPS.PRG" PRG</div>
+        <div class="terminal-line menu-item" data-path="/links">40 "LINKS.PRG" PRG</div>
       `;
       container.appendChild(menu);
-
-      await addLine(container, '', 100);
-      await addLine(container, '504 BLOCKS FREE.', 200);
+      // Attach programmatic click handlers (safer than inline onclick attributes)
+      menu.querySelectorAll('.menu-item').forEach(item => {
+        const path = item.getAttribute('data-path');
+        if (path) item.addEventListener('click', () => navigateTo(path));
+      });
       await addLine(container, '', 100);
       await addLine(container, '', 200);
       await addLine(container, '', 100);
@@ -1034,11 +1035,14 @@
 
       // Try to fetch wiki pages dynamically and fall back to static list
       let pages = await fetchWikiPages();
-      const listToUse = pages && pages.length ? pages : writeups.map(w => ({ title: w.title, url: w.url, desc: w.desc || '' }));
+      const listToUse = pages && pages.length ? pages : writeups.map(w => ({ title: w.title, url: w.url, desc: w.desc || '', slug: w.slug || (w.url && w.url.split('/').pop()) }));
 
       for (const writeup of listToUse) {
         const box = document.createElement('div');
         box.className = 'item-box';
+        // ensure a data-path is present for delegation
+        const itemSlug = writeup.slug || (writeup.url && writeup.url.split('/').pop());
+        if (itemSlug) box.setAttribute('data-path', '/writeup/' + itemSlug);
 
         // Generate screenshot URL using thum.io
         const screenshotUrl = `https://image.thum.io/get/width/400/crop/600/noanimate/${encodeURIComponent(writeup.url)}`;
@@ -1049,183 +1053,11 @@
           <div class="item-desc">${writeup.desc || ''}</div>
         `;
 
-        // Clicking will embed the writeup in an iframe inside the popup.
-        // If framing is blocked, show an inline message with an extractor-rendered text view.
+        // Clicking will navigate to the writeup route; router will render content
         box.onclick = () => {
-          let frameContainer = document.getElementById('writeupFrameContainer');
-          if (!frameContainer) {
-            frameContainer = document.createElement('div');
-            frameContainer.id = 'writeupFrameContainer';
-            frameContainer.style.cssText = 'border:1px solid #7C71DA; margin-top:0; max-height:70vh; overflow:auto; display:block; padding:0 12px 12px 12px; background:rgba(255,255,255,0.02); border-radius:6px;';
-
-            const iframeWrapper = document.createElement('div');
-            iframeWrapper.style.cssText = 'width:100%; min-height:0;';
-
-            const iframe = document.createElement('iframe');
-            iframe.id = 'writeupFrame';
-            iframe.style.cssText = 'width:100%; height:100%; border:none; display:block; min-height:0;';
-
-            iframeWrapper.appendChild(iframe);
-            frameContainer.appendChild(iframeWrapper);
-
-            // Fallback message area (hidden by default)
-            const fallback = document.createElement('div');
-            fallback.id = 'writeupFallback';
-            fallback.style.cssText = 'padding:12px; color:#EDEDED; background:rgba(255,255,255,0.03); display:none; text-align:left;';
-            frameContainer.appendChild(fallback);
-
-            // Insert the frame container right after the clicked item for seamless layout
-            box.insertAdjacentElement('afterend', frameContainer);
-          }
-
-          // Ensure frameContainer is under the clicked item (move if it already exists)
-          box.insertAdjacentElement('afterend', frameContainer);
-
-          const iframe = document.getElementById('writeupFrame');
-          const fallback = document.getElementById('writeupFallback');
-
-          // Reset fallback
-          fallback.style.display = 'none';
-          fallback.innerHTML = '';
-
-          // Set iframe src to embed the page
-          iframe.src = writeup.url;
-          iframe.style.display = 'block';
-
-          // After a short delay, detect if framing was blocked
-          setTimeout(() => {
-            let blocked = false;
-            try {
-              const doc = iframe.contentDocument || iframe.contentWindow.document;
-              if (!doc || doc.body == null || doc.body.innerHTML.trim().length === 0) blocked = true;
-            } catch (err) {
-              blocked = true;
-            }
-
-            if (blocked) {
-              // Hide the iframe and show a friendly inline message and attempt text extraction
-              iframe.style.display = 'none';
-              fallback.style.display = 'block';
-
-              const status = document.createElement('div');
-              status.id = 'extractStatus';
-              status.style.cssText = 'margin-top:0; font-size:12px; color:#CFCFE8; text-align:left; padding:0;';
-
-              status.textContent = 'Loading article text...';
-              fallback.appendChild(status);
-
-              // Use r.jina.ai text extractor with selector to get only the content
-              // We target .markdown-body to avoid nav/footer, but fallback to body if needed
-              const apiUrl = 'https://r.jina.ai/http://' + encodeURI(writeup.url.replace(/^https?:\/\//, '')) + '?selector=.markdown-body,body';
-              // No skeleton — fetch and render text directly
-              const frameContainer = document.getElementById('writeupFrameContainer');
-
-              // Helper to clean up text - AGGRESSIVE cleanup
-              const cleanText = (text) => {
-                let cleaned = text;
-
-                // Remove jina.ai metadata headers
-                cleaned = cleaned.replace(/^Title:.*$/gm, '');
-                cleaned = cleaned.replace(/^URL Source:.*$/gm, '');
-                cleaned = cleaned.replace(/^Markdown Content:.*$/gm, '');
-                cleaned = cleaned.replace(/^=+$/gm, '');
-
-                // Remove everything before the actual content starts
-                // Look for the article title and start from there
-                const lines = cleaned.split('\n');
-                let startIndex = -1;
-
-                // Find where actual content starts (after all the navigation)
-                for (let i = 0; i < lines.length; i++) {
-                  const line = lines[i].trim();
-                  // Look for common article start patterns
-                  if (line.match(/^(The Well|You are deserted|Spitting out|What If Your|The Strings|The Invisible)/i)) {
-                    startIndex = i;
-                    break;
-                  }
-                  // Or look for the first heading after metadata
-                  if (i > 50 && line.match(/^#{1,3}\s+\w/)) {
-                    startIndex = i;
-                    break;
-                  }
-                }
-
-                if (startIndex > 0) {
-                  cleaned = lines.slice(startIndex).join('\n');
-                }
-
-                // Remove footer junk - everything after "Toggle table of contents"
-                if (cleaned.includes('Toggle table of contents')) {
-                  cleaned = cleaned.split('Toggle table of contents')[0];
-                } else if (cleaned.includes('Clone this wiki locally')) {
-                  cleaned = cleaned.split('Clone this wiki locally')[0];
-                } else if (cleaned.includes('Footer')) {
-                  cleaned = cleaned.split('Footer')[0];
-                }
-
-                // Final cleanup of any remaining navigation fragments
-                cleaned = cleaned.replace(/Skip to content[\s\S]*?Insights/i, '');
-                cleaned = cleaned.replace(/Jump to bottom/gi, '');
-                cleaned = cleaned.replace(/edited this page.*?revision/gi, '');
-                cleaned = cleaned.replace(/Loading (Home|ATM|Basic|Discord|The Poision|Userland)/gi, '');
-
-                return cleaned.trim();
-              };
-
-              fetch(apiUrl).then(res => res.text()).then(text => {
-                status.style.display = 'none';
-
-                let contentText = text && text.trim().length ? text : 'No text could be extracted from this page.';
-                contentText = cleanText(contentText);
-
-                // Detect simple markdown by checking for common markdown markers
-                const looksLikeMarkdown = /(^|\n)#{1,6}\s|\*\*|\*\s|\-\s|\[.*\]\(.*\)/m.test(contentText);
-
-                const viewer = document.createElement('div');
-                viewer.style.cssText = 'color:#EDEDED; font-size:14px; overflow:auto; max-height:calc(70vh - 80px); padding:10px; background:rgba(255,255,255,0.02); border-radius:6px; line-height:1.7; text-align:left;';
-
-                if (looksLikeMarkdown && window.marked && window.DOMPurify) {
-                  // Render markdown to safe HTML
-                  const html = marked.parse(contentText);
-                  viewer.innerHTML = DOMPurify.sanitize('<div class="markdown-viewer">' + html + '</div>');
-                } else {
-                  // Plain text fallback
-                  const pre = document.createElement('pre');
-                  pre.style.cssText = 'white-space:pre-wrap; color:#EDEDED; font-size:13px; overflow:auto; max-height:calc(70vh - 80px); padding:10px; background:rgba(255,255,255,0.02); border-radius:6px;';
-                  pre.textContent = contentText;
-                  viewer.appendChild(pre);
-                }
-
-                fallback.appendChild(viewer);
-
-                // Add small "Open in new tab" button below the text
-                const openBtn2 = document.createElement('button');
-                openBtn2.textContent = 'Open original page';
-                openBtn2.style.cssText = 'margin-top:8px; padding:8px; background:#7C71DA; color:#FFF; border:none; cursor:pointer; font-family: "Press Start 2P", monospace; font-size:10px;';
-                openBtn2.onclick = (e) => { e.stopPropagation(); window.open(writeup.url, '_blank'); };
-                fallback.appendChild(openBtn2);
-              }).catch(err => {
-                status.textContent = 'Text extraction failed.';
-                const openBtn = document.createElement('button');
-                openBtn.textContent = 'Open in new tab';
-                openBtn.style.cssText = 'margin-top:8px; padding:8px; background:#7C71DA; color:#FFF; border:none; cursor:pointer; font-family: "Press Start 2P", monospace; font-size:10px;';
-                openBtn.onclick = (e) => { e.stopPropagation(); window.open(writeup.url, '_blank'); };
-                fallback.appendChild(openBtn);
-              });
-            }
-          }, 700);
-
-          // Scroll the iframe container into view
-          // Instead of scrolling the whole window, scroll the popup window content
-          const fc = document.getElementById('writeupFrameContainer');
-          const popupWindow = fc ? fc.closest('.popup-window') : null;
-          if (popupWindow && fc) {
-            // Smooth-scroll the popup's scrollTop to the frame container's offsetTop
-            const target = fc.offsetTop - 8; // small padding
-            popupWindow.scrollTo({ top: target, behavior: 'smooth' });
-          } else if (fc) {
-            fc.scrollIntoView({ behavior: 'smooth' });
-          }
+          const slug = writeup.slug || (writeup.url && writeup.url.split('/').pop());
+          if (!slug) return;
+          navigateTo('/writeup/' + slug);
         };
 
         content.appendChild(box);
@@ -1285,6 +1117,91 @@
     function closePopup(type) {
       document.getElementById('popup-' + type).classList.remove('active');
     }
+
+    // Router: navigateTo, handleRoute, and loadWriteupContent
+    function navigateTo(path, replace = false) {
+      try {
+        if (replace) history.replaceState({}, '', path);
+        else history.pushState({}, '', path);
+      } catch (e) {
+        // Ignore pushState errors on older browsers
+      }
+      console.log('[router] navigateTo', path);
+      handleRoute();
+    }
+
+    async function loadWriteupContent(slug) {
+      const content = document.getElementById('writeupsContent');
+      content.innerHTML = '';
+      showDiskActivity(800);
+      await addLine(content, 'LOADING WRITEUP: ' + slug, 80);
+
+      // Try to fetch from wiki via r.jina.ai
+      const apiUrl = 'https://r.jina.ai/http://github.com/sarwarerror/504SARWARERROR/wiki/' + encodeURIComponent(slug);
+      try {
+        const res = await fetch(apiUrl);
+        const text = await res.text();
+        if (text && text.trim().length) {
+          // Detect markdown-like content and render
+          const looksLikeMarkdown = /(^|\n)#{1,6}\s|\*\*|\*\s|\-\s|\[.*\]\(.*\)/m.test(text);
+          const viewer = document.createElement('div');
+          viewer.className = 'markdown-viewer';
+          if (looksLikeMarkdown && window.marked && window.DOMPurify) {
+            const html = marked.parse(text);
+            viewer.innerHTML = DOMPurify.sanitize(html);
+          } else {
+            const pre = document.createElement('pre');
+            pre.style.cssText = 'white-space:pre-wrap; color:#EDEDED; font-size:13px;';
+            pre.textContent = text;
+            viewer.appendChild(pre);
+          }
+          content.appendChild(viewer);
+        } else {
+          // fallback to opening the wiki page in iframe/new tab
+          const fallbackMsg = document.createElement('div');
+          fallbackMsg.className = 'terminal-line';
+          fallbackMsg.textContent = 'Could not extract content; opening original page.';
+          content.appendChild(fallbackMsg);
+          await new Promise(r => setTimeout(r, 300));
+          window.open('https://github.com/sarwarerror/504SARWARERROR/wiki/' + encodeURIComponent(slug), '_blank');
+        }
+      } catch (err) {
+        const errMsg = document.createElement('div');
+        errMsg.className = 'terminal-line';
+        errMsg.textContent = 'Failed to load writeup: ' + (err.message || err);
+        content.appendChild(errMsg);
+      }
+      // Ensure popup visible
+      const popup = document.getElementById('popup-writeups');
+      popup.classList.add('active');
+    }
+
+    function handleRoute() {
+      const path = location.pathname.replace(/\/+$|^\/?/, '/').replace(/^\/?/, '/');
+      // Normalize
+      const p = location.pathname || '/';
+      if (p === '/' || p === '') return;
+      if (p === '/links') {
+        loadProgram('links');
+        return;
+      }
+      if (p === '/writeups') {
+        loadProgram('writeups');
+        return;
+      }
+      if (p.startsWith('/writeup/')) {
+        const slug = p.split('/').pop();
+        loadWriteupContent(slug);
+        return;
+      }
+      // Support direct /about and /projects
+      if (p === '/about' || p === '/projects') {
+        loadProgram(p.slice(1));
+      }
+
+    }
+
+    window.addEventListener('popstate', handleRoute);
 
     // Konami Code Easter Egg
     let konamiCode = [];
@@ -1429,19 +1346,19 @@
         return;
       }
 
-      // F1-F4 Quick Load
+      // F1-F4 Quick Load (use router to keep URL in sync)
       if (e.key === 'F1') {
         e.preventDefault();
-        loadProgram('about');
+        navigateTo('/about');
       } else if (e.key === 'F2') {
         e.preventDefault();
-        loadProgram('projects');
+        navigateTo('/projects');
       } else if (e.key === 'F3') {
         e.preventDefault();
-        loadProgram('writeups');
+        navigateTo('/writeups');
       } else if (e.key === 'F4') {
         e.preventDefault();
-        loadProgram('links');
+        navigateTo('/links');
       }
 
       // Handle typing
@@ -1463,6 +1380,19 @@
       // Click on credits shows help
       const helpText = 'C64 TERMINAL COMMANDS:\n\nHELP - Show commands\nLIST - Show menu\nCLEAR - Reload\nSYS 64738 - Reset\nF1-F4 - Quick load\n\nJust start typing!';
       alert(helpText);
+    });
+
+    // Global click delegation: handle `[data-path]` navigation (works if inline handlers are blocked)
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest && e.target.closest('[data-path]');
+      if (el) {
+        const path = el.getAttribute('data-path');
+        console.log('[delegation] clicked', el, path);
+        if (path) {
+          e.preventDefault();
+          navigateTo(path);
+        }
+      }
     });
 
     window.addEventListener('load', bootSequence);
