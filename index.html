@@ -936,6 +936,10 @@
     }
 
     async function loadAbout() {
+      // Prevent double-loading
+      if (window._loadingAbout) return;
+      window._loadingAbout = true;
+      
       const content = document.getElementById('aboutContent');
       content.innerHTML = '';
 
@@ -980,9 +984,16 @@
 
       await addLine(content, '', 100);
       await addLine(content, '', 100);
+      
+      // Reset loading flag
+      window._loadingAbout = false;
     }
 
     async function loadProjects() {
+      // Prevent double-loading
+      if (window._loadingProjects) return;
+      window._loadingProjects = true;
+      
       const content = document.getElementById('projectsContent');
       content.innerHTML = '';
 
@@ -1015,9 +1026,16 @@
 
       await addLine(content, '', 100);
       await addLine(content, '', 100);
+      
+      // Reset loading flag
+      window._loadingProjects = false;
     }
 
     async function loadWriteups() {
+      // Prevent double-loading
+      if (window._loadingWriteups) return;
+      window._loadingWriteups = true;
+      
       const content = document.getElementById('writeupsContent');
       content.innerHTML = '';
 
@@ -1072,9 +1090,16 @@
 
       await addLine(content, '', 100);
       await addLine(content, '', 100);
+      
+      // Reset loading flag
+      window._loadingWriteups = false;
     }
 
     async function loadLinks() {
+      // Prevent double-loading
+      if (window._loadingLinks) return;
+      window._loadingLinks = true;
+      
       const content = document.getElementById('linksContent');
       content.innerHTML = '';
 
@@ -1109,6 +1134,9 @@
 
       await addLine(content, '', 100);
       await addLine(content, '', 100);
+      
+      // Reset loading flag
+      window._loadingLinks = false;
     }
 
     function loadProgram(type) {
@@ -1136,7 +1164,7 @@
         location.hash = hashPath.slice(1); // set hash without the leading #
       }
       console.log('[router] navigateTo', hashPath);
-      handleRoute();
+      // Don't call handleRoute() here — hashchange event will trigger it automatically
     }
 
     async function loadWriteupContent(slug) {
