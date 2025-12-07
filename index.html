@@ -1174,7 +1174,7 @@
       await addLine(content, 'LOADING WRITEUP: ' + slug, 80);
 
       // Try to fetch from wiki via r.jina.ai
-      const apiUrl = 'https://r.jina.ai/http://github.com/sarwarerror/504SARWARERROR/wiki/' + encodeURIComponent(slug);
+      const apiUrl = 'https://r.jina.ai/http://github.com/sarwarerror/SARWARERROR/wiki/' + encodeURIComponent(slug);
       try {
         const res = await fetch(apiUrl);
         const text = await res.text();
@@ -1201,7 +1201,7 @@
           content.appendChild(fallbackMsg);
           await new Promise(r => setTimeout(r, 300));
           // Open original wiki page in the same tab so refresh keeps the page
-          window.open('https://github.com/sarwarerror/504SARWARERROR/wiki/' + encodeURIComponent(slug), '_self');
+          window.open('https://github.com/sarwarerror/SARWARERROR/wiki/' + encodeURIComponent(slug), '_self');
         }
       } catch (err) {
         const errMsg = document.createElement('div');
