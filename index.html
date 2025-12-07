@@ -863,6 +863,9 @@
     }
 
     async function bootSequence() {
+      // Prevent boot sequence from running more than once (avoid duplicated text)
+      if (window._bootRan) return;
+      window._bootRan = true;
       const container = document.getElementById('bootSequence');
 
       // Show disk activity during boot
@@ -998,7 +1001,8 @@
       for (const project of projects) {
         const box = document.createElement('div');
         box.className = 'item-box';
-        box.onclick = () => window.open(project.url, '_blank');
+        // Open project in the same tab (avoid popup/new tab behavior)
+        box.onclick = () => window.open(project.url, '_self');
         box.innerHTML = `
           <div class="item-title">${project.title}</div>
           <div class="item-desc">${project.desc}</div>
@@ -1091,7 +1095,8 @@
       for (const link of links) {
         const box = document.createElement('div');
         box.className = 'link-box';
-        box.onclick = () => window.open(link.url, '_blank');
+        // Open link in the same tab (avoid popup/new tab behavior)
+        box.onclick = () => window.open(link.url, '_self');
         box.innerHTML = `
           ${link.title}
           <div class="item-desc" style="margin-top: 5px;">${link.desc}</div>
@@ -1163,7 +1168,8 @@
           fallbackMsg.textContent = 'Could not extract content; opening original page.';
           content.appendChild(fallbackMsg);
           await new Promise(r => setTimeout(r, 300));
-          window.open('https://github.com/sarwarerror/504SARWARERROR/wiki/' + encodeURIComponent(slug), '_blank');
+          // Open original wiki page in the same tab so refresh keeps the page
+          window.open('https://github.com/sarwarerror/504SARWARERROR/wiki/' + encodeURIComponent(slug), '_self');
         }
       } catch (err) {
         const errMsg = document.createElement('div');
@@ -1395,7 +1401,12 @@
       }
     });
 
-    window.addEventListener('load', bootSequence);
+    window.addEventListener('load', async () => {
+      // Run boot sequence once and then handle any route present in the URL.
+      if (!window._bootRan) await bootSequence();
+      // Ensure router respects current URL on refresh/navigation
+      handleRoute();
+    });
   </script>
 </body>
 
