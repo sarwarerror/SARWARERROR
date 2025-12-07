@@ -787,7 +787,7 @@
     // Fetch GitHub wiki page list via r.jina.ai and parse links
     async function fetchWikiPages() {
       try {
-        const wikiIndexUrl = 'https://github.com/sarwarerror/sarwarerror/wiki';
+        const wikiIndexUrl = 'https://github.com/sarwarerror/SARWARERROR/wiki';
         const api = 'https://r.jina.ai/http://' + wikiIndexUrl.replace(/^https?:\/\//, '');
         const res = await fetch(api);
         const text = await res.text();
