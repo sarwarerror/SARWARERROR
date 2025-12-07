@@ -103,7 +103,7 @@
   <tbody>
     <tr>
       <td style="vertical-align: top; padding: 10px;">
-        <a href="https://github.com/sarwarerror/504SARWARERROR/wiki">SARWAR'S GUIDE TO CREATING MALWARE</a>
+        <a href="https://github.com/sarwarerror/SARWARERROR/wiki">SARWAR'S GUIDE TO CREATING MALWARE</a>
       </td>
       <td style="vertical-align: top; padding: 10px;">
 compilation of write-ups about malware development
