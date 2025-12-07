@@ -103,7 +103,7 @@
   <tbody>
     <tr>
       <td style="vertical-align: top; padding: 10px;">
-        <a href="https://github.com/sarwarerror/504SARWARERROR/wiki">Sarwar's Guide to Creating Malware</a>
+        <a href="https://github.com/sarwarerror/504SARWARERROR/wiki">SARWAR'S GUIDE TO CREATING MALWARE</a>
       </td>
       <td style="vertical-align: top; padding: 10px;">
 compilation of write-ups about malware development
@@ -121,7 +121,7 @@ compilation of write-ups about malware development
 
   <tr>
       <td style="vertical-align: top; padding: 10px;">
-        <a href="https://github.com/sarwarerror/504SARWARERROR/wiki/ATM-Jackpotting-Spitting-Out-Bills">ATM Jackpotting Spitting Out Bills</a>
+        <a href="https://github.com/sarwarerror/504SARWARERROR/wiki/ATM-Jackpotting-Spitting-Out-Bills">ATM JACKPOTTING SPITTING OUT BILLS</a>
       </td>
       <td style="vertical-align: top; padding: 10px;">
         when an atm spits out all its money to you
