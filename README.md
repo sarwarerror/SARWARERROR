@@ -38,50 +38,50 @@
     <tbody>
         <tr>
         <td> 
-          <a href="https://github.com/504sarwarerror/CASM"><b>CASM</b></a>
+          <a href="https://github.com/sarwarerror/CASM"><b>CASM</b></a>
         </td>
         <td>
-          <img alt="Stars" src="https://img.shields.io/github/stars/504sarwarerror/CASM?style=flat-square&labelColor=343b41"/>
+          <img alt="Stars" src="https://img.shields.io/github/stars/sarwarerror/CASM?style=flat-square&labelColor=343b41"/>
         </td>
         <td>
-          <img alt="Forks" src="https://img.shields.io/github/forks/504sarwarerror/CASM?style=flat-square&labelColor=343b41"/>
+          <img alt="Forks" src="https://img.shields.io/github/forks/sarwarerror/CASM?style=flat-square&labelColor=343b41"/>
         </td>
         <td>compiler designed to seamlessly blend assembly and c, yes i write my malware in assembly</td>
       </tr>
       <tr>
         <td> 
-          <a href="https://github.com/sarwaaaar/rabids"><b>RABIDS</b></a>
+          <a href="https://github.com/sarwarerror/rabids"><b>RABIDS</b></a>
         </td>
         <td>
-          <img alt="Stars" src="https://img.shields.io/github/stars/sarwaaaar/rabids?style=flat-square&labelColor=343b41"/>
+          <img alt="Stars" src="https://img.shields.io/github/stars/sarwarerror/rabids?style=flat-square&labelColor=343b41"/>
         </td>
         <td>
-          <img alt="Forks" src="https://img.shields.io/github/forks/sarwaaaar/rabids?style=flat-square&labelColor=343b41"/>
+          <img alt="Forks" src="https://img.shields.io/github/forks/sarwarerror/rabids?style=flat-square&labelColor=343b41"/>
         </td>
         <td>modular malware framework to build custom payloads, designed for advanced adversary simulation and malware research</td>
       </tr>
       <tr>
       <tr>
         <td> 
-          <a href="https://github.com/sarwaaaar/savant"><b>SAVANT</b></a>
+          <a href="https://github.com/sarwarerror/savant"><b>SAVANT</b></a>
         </td>
         <td>
-          <img alt="Stars" src="https://img.shields.io/github/stars/sarwaaaar/savant?style=flat-square&labelColor=343b41"/>
+          <img alt="Stars" src="https://img.shields.io/github/stars/sarwarerror/savant?style=flat-square&labelColor=343b41"/>
         </td>
         <td>
-          <img alt="Forks" src="https://img.shields.io/github/forks/sarwaaaar/savant?style=flat-square&labelColor=343b41"/>
+          <img alt="Forks" src="https://img.shields.io/github/forks/sarwarerror/savant?style=flat-square&labelColor=343b41"/>
         </td>
         <td>a rag model trained on malware sample, it is designed to generate new malware</td>
       </tr>
       <tr>
         <td>
-          <a href="https://github.com/sarwaaaar/blackwall"><b>BLACKWALL</b></a>
+          <a href="https://github.com/sarwarerror/blackwall"><b>BLACKWALL</b></a>
         </td>
         <td>
-          <img alt="Stars" src="https://img.shields.io/github/stars/sarwaaaar/blackwall?style=flat-square&labelColor=343b41"/>
+          <img alt="Stars" src="https://img.shields.io/github/stars/sarwarerror/blackwall?style=flat-square&labelColor=343b41"/>
         </td>
         <td>
-          <img alt="Forks" src="https://img.shields.io/github/forks/sarwaaaar/blackwall?style=flat-square&labelColor=343b41"/>
+          <img alt="Forks" src="https://img.shields.io/github/forks/sarwarerror/blackwall?style=flat-square&labelColor=343b41"/>
         </td>
         <td>curated repository of malware samples preserved for research and analysis</td>
       </tr>
@@ -103,7 +103,7 @@
   <tbody>
     <tr>
       <td style="vertical-align: top; padding: 10px;">
-        <a href="https://github.com/504sarwarerror/504SARWARERROR/wiki">Sarwar's Guide to Creating Malware</a>
+        <a href="https://github.com/sarwarerror/504SARWARERROR/wiki">Sarwar's Guide to Creating Malware</a>
       </td>
       <td style="vertical-align: top; padding: 10px;">
 compilation of write-ups about malware development
@@ -121,7 +121,7 @@ compilation of write-ups about malware development
 
   <tr>
       <td style="vertical-align: top; padding: 10px;">
-        <a href="https://github.com/504sarwarerror/504SARWARERROR/wiki/ATM-Jackpotting-Spitting-Out-Bills">ATM Jackpotting Spitting Out Bills</a>
+        <a href="https://github.com/sarwarerror/504SARWARERROR/wiki/ATM-Jackpotting-Spitting-Out-Bills">ATM Jackpotting Spitting Out Bills</a>
       </td>
       <td style="vertical-align: top; padding: 10px;">
         when an atm spits out all its money to you
